@@ -1,0 +1,49 @@
+﻿
+
+namespace SAV.Persistence.Repository.Csv
+{
+    using CsvHelper;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Logging;
+    using SAV.Application.Repository.Csv;
+    using SAV.Application.Result;
+    using SAV.Domain.Entity.CSV;
+    public class CsvProductRepository : IProductFileReader
+    {
+        private readonly string? _FilePath;
+        private readonly ILogger _logger;
+        private readonly IConfiguration _configuration;
+        public CsvProductRepository(IConfiguration configuration, ILogger<CsvProductRepository> logger)
+        {
+            _configuration = configuration;
+            _logger = logger;
+            _FilePath = _configuration["CsvProduct"];
+        }
+        public async Task<IEnumerable<Products>> FileReader(string FilePath)
+        {
+            OperationResult<IEnumerable<Products>> result = new OperationResult<IEnumerable<Products>>();
+            List<Products> products = new List<Products>();
+
+            _logger.LogInformation("Leyendo el archivo csv", _FilePath);
+
+            try
+            {
+                using var Reader = new StreamReader(FilePath);
+                using var csv = new CsvReader(Reader, System.Globalization.CultureInfo.InvariantCulture);
+
+                await foreach (var record in csv.GetRecordsAsync<Products>())
+                {
+                    products.Add(record);
+                }
+                result = OperationResult<IEnumerable<Products>>.Succes("Proceso completado sin errores");
+            }
+            catch (Exception ex)
+            {
+                products = null;
+                _logger.LogError("Error al leer el archvo", ex);
+                result = OperationResult<IEnumerable<Products>>.Failuer("Error en el proceso");
+            }
+            return products;
+        }
+    }
+}
