@@ -2,9 +2,10 @@
 
 namespace SAV.Application.Repository.Api
 {
+    using SAV.Application.Result;
     using SAV.Domain.Entity.CSV;
     public interface ICustomerApiRepository
     {
-        Task<IEnumerable<Customers>> GetCustomersAsync();
+        Task<OperationResult<IEnumerable<Customers>>> GetCustomersAsync();
     }
 }
