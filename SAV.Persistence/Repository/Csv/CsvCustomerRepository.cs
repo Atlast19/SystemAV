@@ -13,8 +13,6 @@ namespace SAV.Persistence.Repository.Csv
         private readonly string? _FilePath;
         private readonly ILogger<CsvCustomerRepository> _logger;
         private readonly IConfiguration _configuration;
-
-
         public CsvCustomerRepository(IConfiguration configuration, ILogger<CsvCustomerRepository> logger)
         {
             _configuration = configuration;
