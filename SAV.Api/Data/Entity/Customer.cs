@@ -1,8 +1,6 @@
-﻿
-
-namespace SAV.Domain.Entity.Api
+﻿namespace SAV.Api.Data.Entity
 {
-    public class Customers
+    public class Customer
     {
         public int CustomerId { get; set; }
 

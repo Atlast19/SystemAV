@@ -1,7 +1,6 @@
-﻿
-namespace SAV.Domain.Entity.Api
+﻿namespace SAV.Api.Data.Entity
 {
-    public class Products
+    public class Product
     {
         public int ProductId { get; set; }
 

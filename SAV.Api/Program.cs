@@ -1,4 +1,9 @@
 
+using Microsoft.EntityFrameworkCore;
+using SAV.Api.Data.Context;
+using SAV.Api.Data.Entity;
+using SAV.Api.Data.Interface;
+
 namespace SAV.Api
 {
     public class Program
@@ -8,6 +13,11 @@ namespace SAV.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddDbContext<ApiContext>(option =>
+            option.UseSqlServer(builder.Configuration.GetConnectionString("StringConnection")));
+
+            
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
