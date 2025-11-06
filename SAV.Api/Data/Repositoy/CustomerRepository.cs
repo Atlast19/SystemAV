@@ -16,7 +16,7 @@ namespace SAV.Api.Data.Repositoy
         }
         public async Task<IEnumerable<Customer>> GetDataFromApi()
         {
-            return await _context.customers.ToArrayAsync();
+            return await _context.customer.ToArrayAsync();
         }
     }
 }

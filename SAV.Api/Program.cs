@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SAV.Api.Data.Context;
 using SAV.Api.Data.Entity;
 using SAV.Api.Data.Interface;
+using SAV.Api.Data.Repositoy;
 
 namespace SAV.Api
 {
@@ -17,9 +18,16 @@ namespace SAV.Api
             builder.Services.AddDbContext<ApiContext>(option =>
             option.UseSqlServer(builder.Configuration.GetConnectionString("StringConnection")));
 
-            //falta la dependencia
+            builder.Services.AddScoped<IRepository<Customer>, CustomerRepository>();
+            builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 
-            builder.Services.AddControllers();
+
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+                });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

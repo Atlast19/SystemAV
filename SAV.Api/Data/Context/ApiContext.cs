@@ -7,7 +7,7 @@ namespace SAV.Api.Data.Context
     {
         public ApiContext(DbContextOptions<ApiContext> option) : base(option) { }
 
-        public DbSet<Customer> customers { get; set; }
-        public DbSet<Product> products { get; set; }
+        public DbSet<Customer> customer { get; set; }
+        public DbSet<Product> product { get; set; }
     }
 }

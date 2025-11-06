@@ -6,7 +6,7 @@ namespace SAV.Api.Controllers
 {
     [Route("Api/[controller]")]
     [ApiController]
-    public class CustomerController : Controller
+    public class CustomerController : ControllerBase
     {
         private readonly IRepository<Customer> _repository;
 
