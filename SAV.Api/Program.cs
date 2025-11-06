@@ -17,7 +17,7 @@ namespace SAV.Api
             builder.Services.AddDbContext<ApiContext>(option =>
             option.UseSqlServer(builder.Configuration.GetConnectionString("StringConnection")));
 
-            
+            //falta la dependencia
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
