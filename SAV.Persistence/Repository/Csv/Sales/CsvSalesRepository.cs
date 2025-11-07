@@ -1,12 +1,9 @@
 ﻿
 
-
-using SAV.Application.Repository.Csv.ISales;
-using SAV.Domain.Entity.Csv;
-
-
 namespace SAV.Persistence.Repository.Csv.Sales
 {
+    using SAV.Application.Repository.Csv.ISales;
+    using SAV.Domain.Entity.Csv;
     public class CsvSalesRepository : ISalesRepository
     {
         private readonly IEnumerable<Orders> _orders;
