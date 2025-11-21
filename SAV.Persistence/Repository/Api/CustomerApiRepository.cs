@@ -26,7 +26,7 @@ namespace SAV.Persistence.Repository.Api
 
             try
             {
-                var customerAPI = await _httpClient.GetFromJsonAsync<IEnumerable<Customers>>(""); // url del enpoint
+                var customerAPI = await _httpClient.GetFromJsonAsync<IEnumerable<Customers>>("http://localhost:5008/Api/Customer/GetCustomers"); // url del enpoint
                 _logger.LogInformation("Datos de la API Eterna cargados correctamente");
                 customers.AddRange(customerAPI);
                 result = OperationResult<IEnumerable<Customers>>.Succes("Proceso completado correctamente");

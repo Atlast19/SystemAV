@@ -15,13 +15,13 @@ namespace SAV.Persistence.Repository.Csv.Sales
             _orderDetails = orderDetails;
         }
 
-        public async Task<IEnumerable<Domain.Entity.Csv.Sales>> GetSales()
+        public async Task<IEnumerable<Sales>> GetSales()
         {
-            List<Domain.Entity.Csv.Sales> Sales = new List<Domain.Entity.Csv.Sales>();
+            List<Sales> Sales = new List<Sales>();
             var SalesResult = from O in _orders
                               join D in _orderDetails
                               on O.OrderID equals D.OrderID
-                              select new Domain.Entity.Csv.Sales
+                              select new Sales
                               {
                                   OrderID = O.OrderID,
                                   CustomerID = O.CustomerID,

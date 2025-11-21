@@ -3,28 +3,22 @@
 namespace SAV.Persistence.Repository.Csv.Sales
 {
     using CsvHelper;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
     using SAV.Application.Repository.Csv;
     using SAV.Application.Result;
     using SAV.Domain.Entity.Csv;
     public class CsvOrderRepository : IOrderFileReader
     {
-        private readonly string? _FilePath;
         private readonly ILogger<CsvOrderRepository> _logger;
-        private readonly IConfiguration _configuration;
-        public CsvOrderRepository(IConfiguration configuration, ILogger<CsvOrderRepository> logger)
+        public CsvOrderRepository(ILogger<CsvOrderRepository> logger)
         {
-            _configuration = configuration;
             _logger = logger;
-            _FilePath = _configuration["CsvOrdersFilePath"];
         }
         public async Task<IEnumerable<Orders>> FileReader(string FilePath)
         {
             OperationResult<IEnumerable<Orders>> result = new OperationResult<IEnumerable<Orders>>();
             List<Orders> orders = new List<Orders>();
 
-            _logger.LogInformation("Leyendo el archivo csv", _FilePath);
 
             try
             {

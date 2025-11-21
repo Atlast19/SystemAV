@@ -11,6 +11,6 @@ namespace SAV.Persistence.Repository.Db.Context
         {
             
         }
-        public DbSet<SalesHistory> SalesHistories { get; set; }
+        public DbSet<SalesHistory> SalesHistory { get; set; }
     }
 }

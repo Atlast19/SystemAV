@@ -20,8 +20,8 @@ namespace SAV.Persistence.Repository.Db
         }
         public async Task<IEnumerable<SalesHistory>> GetSalesHistoryDataAsync()
         {
-            _logger.LogInformation("Cargando los datos de la base de datos");
-            return await _context.SalesHistories.ToListAsync();
+            _logger.LogInformation("Cargando vista de labase de datos");
+            return await _context.SalesHistory.ToListAsync();
         }
     }
 }
