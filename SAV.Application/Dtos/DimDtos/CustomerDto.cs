@@ -4,7 +4,7 @@ namespace SAV.Application.Dtos.DimDtos
 {
     public class CustomerDto
     {
-        public int CustomerId { get; set; }
+        public int CustomerId { get; set; } 
 
         public string FirstName { get; set; }
 
