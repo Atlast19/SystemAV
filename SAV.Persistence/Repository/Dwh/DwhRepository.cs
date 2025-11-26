@@ -1,5 +1,4 @@
 ﻿
-
 namespace SAV.Persistence.Repository.Dwh
 {
     using Microsoft.Extensions.Logging;

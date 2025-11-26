@@ -1,5 +1,5 @@
 ﻿
-namespace SAV.Domain.Entity.CSV
+namespace SAV.Domain.Entity.Csv
 {
     public class Products
     {

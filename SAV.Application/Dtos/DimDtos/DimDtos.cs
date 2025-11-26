@@ -1,12 +1,24 @@
 ﻿
 namespace SAV.Application.Dtos.DimDtos
 {
-    using SAV.Domain.Entity.CSV;
-
+    using SAV.Domain.Entity.Csv;
+    using SAV.Domain.Entity.Db;
     public class DimDtos
     {
-        public List<Products> products { get; set; }
-        public List<Customers> custoemrs { get; set; }
+        #region"Lista de los datos de API"
+        public List<ProductDto> productsAPI { get; set; }
+        public List<CustomerDto> custoemrsAPI { get; set; }
+        #endregion
+
+        #region"Lista de los datos de Csv"
+        public List<Products> ProductCsv { get; set; }
+        public List<Customers> CustomerCsv { get; set; }
+        public List<Sales> SalesCsv { get; set; }
+        #endregion
+
+        #region "Lista de los datos de BD"
+        public List<SalesHistory> SalesHistoryDb { get; set; }
+        #endregion
 
     }
 }
