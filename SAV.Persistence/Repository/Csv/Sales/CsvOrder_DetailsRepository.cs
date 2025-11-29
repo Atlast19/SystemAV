@@ -19,7 +19,7 @@ namespace SAV.Persistence.Repository.Csv.Sales
             OperationResult<IEnumerable<Order_Details>> result = new OperationResult<IEnumerable<Order_Details>>();
             List<Order_Details> order_detail = new List<Order_Details>();
 
-
+            _logger.LogInformation("Cargando los datos de los csv");
             try
             {
                 using var Reader = new StreamReader(FilePath);

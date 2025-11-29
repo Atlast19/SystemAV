@@ -17,6 +17,7 @@ namespace SAV.Persistence.Repository.Csv.Sales
 
         public async Task<IEnumerable<Sales>> GetSales()
         {
+
             List<Sales> Sales = new List<Sales>();
             var SalesResult = from O in _orders
                               join D in _orderDetails

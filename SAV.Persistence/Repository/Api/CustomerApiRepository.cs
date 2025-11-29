@@ -5,7 +5,7 @@ namespace SAV.Persistence.Repository.Api
     using Microsoft.Extensions.Logging;
     using SAV.Application.Repository.Api;
     using SAV.Application.Result;
-    using SAV.Domain.Entity.CSV;
+    using SAV.Domain.Entity.Csv;
     using System.Net.Http.Json;
 
     public class CustomerApiRepository : ICustomerApiRepository

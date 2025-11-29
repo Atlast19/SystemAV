@@ -12,6 +12,5 @@ namespace SAV.Domain.Entity.Dwh.Dimensions
         public string Phone { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public DateTime LoadDate { get; set; }
     }
 }

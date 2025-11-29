@@ -6,7 +6,7 @@ namespace SAV.Persistence.Repository.Csv
     using Microsoft.Extensions.Logging;
     using SAV.Application.Repository.Csv;
     using SAV.Application.Result;
-    using SAV.Domain.Entity.CSV;
+    using SAV.Domain.Entity.Csv;
     public class CsvProductRepository : IProductFileReader
     {
         private readonly ILogger _logger;
@@ -19,6 +19,7 @@ namespace SAV.Persistence.Repository.Csv
             OperationResult<IEnumerable<Products>> result = new OperationResult<IEnumerable<Products>>();
             List<Products> products = new List<Products>();
 
+            _logger.LogInformation("Cargando los datos de los csv");
             try
             {
                 using var Reader = new StreamReader(FilePath);

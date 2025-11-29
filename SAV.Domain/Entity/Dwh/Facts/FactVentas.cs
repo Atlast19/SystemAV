@@ -14,6 +14,5 @@ namespace SAV.Domain.Entity.Dwh.Facts
         public int Quantity { get; set; }
         public Decimal LineTotal { get; set; }
         public Decimal UnitPrice { get; set; }
-        public DateTime LoadDate { get; set; }
     }
 }

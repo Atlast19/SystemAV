@@ -11,9 +11,7 @@ namespace SAV.Application.Dtos.DimDtos
         #endregion
 
         #region"Lista de los datos de Csv"
-        public List<Products> ProductCsv { get; set; }
-        public List<Customers> CustomerCsv { get; set; }
-        public List<Sales> SalesCsv { get; set; }
+        public string? fileData { get; set; }
         #endregion
 
         #region "Lista de los datos de BD"
