@@ -14,7 +14,7 @@ namespace SAV.Persistence.Repository.Csv.Sales
         {
             _logger = logger;
         }
-        public async Task<IEnumerable<Order_Details>> FileReader(string FilePath)
+        public async Task<IEnumerable<Order_Details>> FileReader(IEnumerable<string> FilePath)
         {
             OperationResult<IEnumerable<Order_Details>> result = new OperationResult<IEnumerable<Order_Details>>();
             List<Order_Details> order_detail = new List<Order_Details>();
@@ -22,13 +22,15 @@ namespace SAV.Persistence.Repository.Csv.Sales
             _logger.LogInformation("Cargando los datos de los csv");
             try
             {
-                using var Reader = new StreamReader(FilePath);
-                using var csv = new CsvReader(Reader, System.Globalization.CultureInfo.InvariantCulture);
+                var path = FilePath.First(x => x.Contains("order_details.csv"));
+                using var Reader = new StreamReader(path);
+                    using var csv = new CsvReader(Reader, System.Globalization.CultureInfo.InvariantCulture);
 
-                await foreach (var record in csv.GetRecordsAsync<Order_Details>())
-                {
-                    order_detail.Add(record);
-                }
+                    await foreach (var record in csv.GetRecordsAsync<Order_Details>())
+                    {
+                        order_detail.Add(record);
+                    }
+
                 result = OperationResult<IEnumerable<Order_Details>>.Succes("Proceso completado sin errores");
             }
             catch (Exception ex)

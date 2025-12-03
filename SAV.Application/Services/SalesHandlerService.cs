@@ -29,7 +29,7 @@ namespace SAV.Application.Services
             {
                 DimDtos dimDtos = new DimDtos();
 
-                dimDtos.fileData = _configuration["ConnectionStrings:CsvPathString"];
+                dimDtos.fileData = _configuration.GetSection("ConnectionStrings:CsvPathString").Get<string[]>();
 
                 result = await _loadDwhRepository.LoadDimData(dimDtos);
             }

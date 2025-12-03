@@ -45,11 +45,11 @@ namespace SAV.Persistence.Repository.Dwh
                 //Carga de la Dimencion de Category
                 var ProductsData = await _productFileReader.FileReader(dimDtos.fileData);
 
-                var category = ProductsData.Select(ct => ct.Category.Trim())
+                var category = ProductsData.Where(ct => ct != null).Select(ct => ct.Category.Trim())
                     .Distinct().
                     Where(ct => !string.IsNullOrEmpty(ct)).Select(ct => new DimCategory
                     {
-                        CategotyName = ct
+                        CategoryName = ct
                     }).ToArray();
 
                 await _context.DimCategory.AddRangeAsync(category);
@@ -57,10 +57,11 @@ namespace SAV.Persistence.Repository.Dwh
 
 
                 //Carga de la Dimencion de los productos
-                var products = ProductsData.Select(pr => new DimProducts
+                var products = ProductsData.Where(pr => pr != null).Select(pr => new DimProducts
                 {
+                    ProductKey = pr.ProductID,
                     ProductName = pr.ProductName.Trim(),
-                    CategoryKey = category.FirstOrDefault(ca => ca.CategotyName == pr.Category.Trim()).CategotyKey,
+                    CategoryKey = category.FirstOrDefault(ca => ca.CategoryName == pr.Category.Trim()).CategoryKey,
                     ListPrice = pr.Price,
                     Stock = pr.Stock
                 }).ToArray();
@@ -71,15 +72,15 @@ namespace SAV.Persistence.Repository.Dwh
                 //Carga de la Dimencion de Customers
                 var CustomerData = await _customerFileReader.FileReader(dimDtos.fileData);
 
-                var customer = CustomerData.Select(cs => new DimCustomers
+                var customer = CustomerData.Where(cs => cs != null).Select(cs => new DimCustomers
                 {
-                    CustomerID = cs.CustomerID,
+                    CustomerKey = cs.CustomerID,
                     FirstName = cs.FirstName.Trim(),
                     LastName = cs.LastName.Trim(),
                     Email = cs.Email.Trim(),
                     Phone = cs.Phone.Trim(),
                     City = cs.City.Trim(),
-                    Country = cs.Country.Trim()
+                    Country = cs.Country.Trim() 
                 }).ToArray();
 
                 await _context.DimCustomer.AddRangeAsync(customer);
@@ -120,7 +121,7 @@ namespace SAV.Persistence.Repository.Dwh
             }
             catch (Exception e) 
             {
-                _logger.LogError("Error Cargando las categorias" + e); 
+                _logger.LogError("Error Cargando las Dimensiones " + e); 
             }
 
             return result;
