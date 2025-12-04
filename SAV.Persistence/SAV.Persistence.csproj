@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SAV.Api\SAV.Api.csproj" />
     <ProjectReference Include="..\SAV.Application\SAV.Application.csproj" />
   </ItemGroup>
 
